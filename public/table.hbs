@@ -1,0 +1,28 @@
+<h2 class='text-center mb-3'>Vista de Productos</h2>
+{{#if productsExist}}
+  <table class='table md-w-50 border-success'>
+    <thead>
+      <tr>
+        <th scope='col'>Nombre</th>
+        <th scope='col'>Precio</th>
+        <th scope='col'>Foto</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+        <tr>
+          <td>{{this.title}}</td>
+          <td>{{this.price}}</td>
+          <td><img style='width: 40px' src={{this.thumbnail}} /></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div
+    class='alert alert-danger d-flex justify-content-center align-items-center mx-auto'
+    role='alert'
+  >
+    <p class='m-0 p-3'>No hay productos</p>
+  </div>
+{{/if}}

@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Escuadra",
+    "price": 123.45,
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+    "id": 1
+  },
+  {
+    "title": "Globo terraqueo",
+    "price": 345.67,
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
+    "id": 2
+  },
+  {
+    "title": "Calculadora",
+    "price": 123.45,
+    "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
+    "id": 3
+  },
+  {
+    "title": "PRUEBA",
+    "price": "123123",
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo2-04-256.png",
+    "id": 4
+  },
+  {
+    "title": "QUE HACES",
+    "price": "123123",
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo2-04-256.png",
+    "id": 5
+  },
+  {
+    "title": "Todo bien cabez",
+    "price": "111",
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo2-04-256.png",
+    "id": 6
+  },
+  {
+    "title": "desde aca si",
+    "price": "111",
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo2-04-256.png",
+    "id": 7
+  }
+]
