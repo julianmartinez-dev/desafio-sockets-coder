@@ -1,4 +1,4 @@
-const { Contenedor } = require("./Contenedor");
+const Contenedor = require('../classes/Contenedor');
 const express = require("express");
 
 
@@ -14,13 +14,13 @@ router
 
 
 async function getAllProducts(req, res) {
-    const products = await contenedor.obtenerProductos();
+    const products = await contenedor.getProducts();
     res.json(products);
 }
 
 async function addProduct(req, res){
     const product = req.body;
-    contenedor.guardarProducto(product);
+    contenedor.saveProduct(product);
     res.status(201).json(product);
 }
 

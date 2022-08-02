@@ -1,3 +1,4 @@
+
 const socket = io.connect();
 
 //-------------CHAT-----------------//
@@ -9,10 +10,6 @@ const userID = document.querySelector('#user-id');
 //-------------PRODUCTS-----------------//
 const table = document.querySelector('#table');
 const formProduct = document.querySelector('#form-product');
-const productTitle = document.querySelector('#title');
-const productPrice = document.querySelector('#price').value;
-const productThumbnail = document.querySelector('#thumbnail').value;
-
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -29,6 +26,9 @@ formProduct.addEventListener('submit', function(e) {
       price: formProduct[1].value,
       thumbnail: formProduct[2].value,
     };
+
+    //Validate if all fields are filled
+    if(Object.values(productData).includes('')) return
     
    fetch('/api/products', {
         headers: {
@@ -45,7 +45,7 @@ formProduct.addEventListener('submit', function(e) {
 socket.on('chat message', function(msg){
     //Create a new message element with the message, user and date
     let message = document.createElement('li');
-    message.innerHTML = `<p><span class="text-blue">${msg.user}</span> [<span class="text-brown">${msg.date}</span>] <span class="text-green">${msg.message}</span></p>`;
+    message.innerHTML = `<p><span class="text-blue">${msg.user}</span> [<span class="text-brown">${formatDate(msg.date)}</span>] <span class="text-green">${msg.message}</span></p>`;
 
     //Append the message to the messageList list
     messageList.appendChild(message);
@@ -70,6 +70,7 @@ socket.on('full products', function(products){
         const compiled = Handlebars.compile(template)
         const html = compiled({ products, productsExist: products.length > 0 })
         table.innerHTML = html
+        table.scrollTop = table.scrollHeight;
     })
 });
 
@@ -87,11 +88,8 @@ const emitNewMessage = ({ user, message }) => {
 
 
 const emitNewProduct = () => {
-
     socket.emit('update products', {});
-    productTitle.value = '';
-    productPrice.value = '';
-    productThumbnail.value = '';
+    formProduct.reset();
 }
 
 
@@ -103,7 +101,7 @@ const validateEmail = (email) => {
 }
 
 const formatDate = (date) => {
-    let dateFormatted = new Date(date)
+    const dateFormatted = new Date(date)
     return dateFormatted.toLocaleString('es-AR')
     
 }

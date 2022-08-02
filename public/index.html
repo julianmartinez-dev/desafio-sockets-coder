@@ -14,9 +14,11 @@
   </head>
   <body class="bg-light d-flex justify-content-center align-items-center">
     <main class="container">
+
+      <h1 class="p-3 text-center mb-5">Desafio Sockets - Julian Martinez</h1>
       <section class="row">
         <div class="col-md-6">
-            <h1 class="mb-3">Ingrese un producto</h1>
+            <h2 class="mb-3">Ingrese un producto</h2>
             <form id="form-product">
               <div class="mb-3">
                 <label for="title" class="form-label">Nombre</label>
@@ -39,12 +41,15 @@
               </div>
             </form>
         </div>
-        <div class="col-md-6" id="table">
-          
+        <div class="col-md-6">
+          <h2 class='text-center mb-3'>Vista de Productos</h2>
+          <div style="height: 350px; overflow-y: scroll;"  id="table">
+
+          </div>
         </div>
       </section>
 
-      <section class="container bg-white min-h-50 p-md-3 shadow">
+      <section class="container bg-white min-h-50 p-md-3 shadow mt-5">
         <h1 class="text-center text-blue">Centro de mensajes</h1>
         <div>
           <label for="user-id">User email:</label>

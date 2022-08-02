@@ -18,27 +18,9 @@
     "id": 3
   },
   {
-    "title": "PRUEBA",
-    "price": "123123",
+    "title": "guardar",
+    "price": "123",
     "thumbnail": "https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo2-04-256.png",
     "id": 4
-  },
-  {
-    "title": "QUE HACES",
-    "price": "123123",
-    "thumbnail": "https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo2-04-256.png",
-    "id": 5
-  },
-  {
-    "title": "Todo bien cabez",
-    "price": "111",
-    "thumbnail": "https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo2-04-256.png",
-    "id": 6
-  },
-  {
-    "title": "desde aca si",
-    "price": "111",
-    "thumbnail": "https://cdn2.iconfinder.com/data/icons/flat-seo-web-ikooni/128/flat_seo2-04-256.png",
-    "id": 7
   }
 ]
