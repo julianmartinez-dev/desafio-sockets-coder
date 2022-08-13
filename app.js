@@ -10,7 +10,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const chat = new Chat('chat-messages');
+const chat = new Chat('messages');
 const contenedor = new Contenedor('productos');
 
 app.use(express.static('./public'));
@@ -23,22 +23,22 @@ app.get('/', (req, res) => {
 });
 
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
     //When the user connects, we send him the chat history and product list
-    const messages = chat.getMessages();
+    const messages = await chat.getMessages();
     const products = contenedor.getProducts();
     io.emit('full chat', messages )
     io.emit('full products', products )
 
     //When the user sends a message, we save it in the chat history
-    socket.on('chat message', ({ message, user}) => {
+    socket.on('chat message',async ({ message, user}) => {
         const newMessage = {
             message,
             user,
             date: new Date(),
         }
-        chat.saveMessage(newMessage);
         io.emit('chat message', newMessage);
+        await chat.saveMessage(newMessage);
     });
 
     socket.on('update products', () =>{

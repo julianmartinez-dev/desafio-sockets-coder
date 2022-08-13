@@ -54,6 +54,8 @@ socket.on('chat message', function(msg){
 
 socket.on('full chat', function(messages){
 
+    if(!messages) return;
+
     messages.forEach(function(msg){
         let message = document.createElement('li');
         message.innerHTML = `<p><span class="text-blue">${msg.user}</span> <span class="text-brown">[${formatDate(msg.date)}]</span> : <span class="text-green">${msg.message}</span></p>`;
@@ -80,7 +82,7 @@ const emitNewMessage = ({ user, message }) => {
     if(!user || !message) return
     if(!validateEmail(user)) return
 
-
+    console.log('from emitNewMessage')
     socket.emit('chat message', {message, user});
     input.value = '';
 }
