@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { options } = require('../options/mariaDB');
+const { options } = require('../options/sqliteDB');
 const knex = require('knex')(options);
 
 class Chat {
@@ -9,16 +9,18 @@ class Chat {
   }
   async createTable(tableName = 'messages') {
    try {
-     if(knex.schema.hasTable(tableName)){
-      console.log('Table already exits');
-      return;
+    const tableExists = await knex.schema.hasTable(tableName);
+     if (tableExists) {
+       console.log(`Table ${this.fileName} already exits`);
+       return;
      }
      await knex.schema.createTable(tableName, (table) => {
-       table.increments('id').primary();
+       table.increments('id')
        table.string('message');
        table.string('user');
-       table.string('date');
+       table.integer('date');
      });
+     console.log(`Table ${this.fileName} created`);
    } catch (error) {
      console.log(error);
    } 
@@ -37,7 +39,8 @@ class Chat {
 
   async getMessages() {
     try {
-      const messages = await knex.select('*').from('messages');
+      const messages = await knex.from('messages').select('*');
+      console.log(messages)
       return messages;
     }catch(error) {
       console.log(error);

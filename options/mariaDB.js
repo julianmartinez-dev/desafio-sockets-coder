@@ -1,11 +1,12 @@
-const options ={
-    client: 'mysql',
-    connection: {
-        host: 'localhost',
-        user: 'root',
-        password: '1234',
-        database: 'coder_mibase'
-    }
-}
+
+const options = {
+  client: 'mysql',
+  connection: {
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+  },
+};
 
 module.exports= { options };

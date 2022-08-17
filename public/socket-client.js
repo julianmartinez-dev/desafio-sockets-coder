@@ -88,12 +88,10 @@ const emitNewMessage = ({ user, message }) => {
 }
 
 
-
 const emitNewProduct = () => {
     socket.emit('update products', {});
     formProduct.reset();
 }
-
 
 
 //regex for email validation

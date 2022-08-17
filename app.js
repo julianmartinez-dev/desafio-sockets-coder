@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io')
@@ -9,9 +10,8 @@ const apiRoutes = require('./api')
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
-
+const contenedor = new Contenedor('products');
 const chat = new Chat('messages');
-const contenedor = new Contenedor('productos');
 
 app.use(express.static('./public'));
 app.use(express.json());
@@ -24,25 +24,25 @@ app.get('/', (req, res) => {
 
 
 io.on('connection', async (socket) => {
-    //When the user connects, we send him the chat history and product list
+    //When user connects, we send him the chat history and product list
     const messages = await chat.getMessages();
-    const products = contenedor.getProducts();
+    const products = await Contenedor.getProducts();
     io.emit('full chat', messages )
     io.emit('full products', products )
 
-    //When the user sends a message, we save it in the chat history
+    //When user sends a message, we save it in the chat history
     socket.on('chat message',async ({ message, user}) => {
         const newMessage = {
             message,
             user,
-            date: new Date(),
+            date: Date.now(),
         }
         io.emit('chat message', newMessage);
         await chat.saveMessage(newMessage);
     });
 
-    socket.on('update products', () =>{
-        const products = contenedor.getProducts();
+    socket.on('update products',async () =>{
+        const products = await Contenedor.getProducts();
         io.emit('full products', products )
     })
 })
