@@ -12,6 +12,7 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "faker": "^5.5.3",
     "knex": "^2.2.0",
     "mysql": "^2.18.1",
     "socket.io": "^4.5.1",
