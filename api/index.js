@@ -31,6 +31,4 @@ async function getFakeProducts(req, res) {
     const products = generateProducts(5);
     res.json(products);
 }
-
-
 module.exports = router;

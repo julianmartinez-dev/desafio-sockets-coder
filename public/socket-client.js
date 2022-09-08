@@ -2,22 +2,40 @@
 const socket = io.connect();
 
 //-------------CHAT-----------------//
-const input = document.querySelector('#input-message');
-const form = document.querySelector('#form-message');
+const formMessage = document.querySelector('#form-message');
 const messageList = document.querySelector('#messages');
-const userID = document.querySelector('#user-id');
+const userID = document.querySelector('#user-id')
+const userName = document.querySelector('#user-name');
+const useLastName = document.querySelector('#user-lastName');
+const userAge = document.querySelector('#user-age');
+const userAlias = document.querySelector('#user-alias');
+const userAvatar = document.querySelector('#user-avatar');
+const input = document.querySelector('#input-message');
 
 //-------------PRODUCTS-----------------//
 const table = document.querySelector('#table');
 const formProduct = document.querySelector('#form-product');
 
-form.addEventListener('submit', function(e) {
+formMessage.addEventListener('submit', function (e) {
     e.preventDefault();
-    const message = input.value;
-    const user = userID.value;
+  const newMessage = {
+        author:{
+            id: userID.value,
+            name: userName.value,
+            lastName: useLastName.value,
+            age: userAge.value,
+            alias: userAlias.value,
+            avatar: userAvatar.value
+        },
+        text: input.value
+    }
 
-    emitNewMessage({ user, message });
-})
+    if(Object.values(newMessage.author).includes('') || newMessage.text === ''){
+        alert('Complete todos los campos')
+        return;
+    }
+  emitNewMessage(newMessage);
+});
 
 formProduct.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -53,6 +71,7 @@ socket.on('chat message', function(msg){
 })
 
 socket.on('full chat', function(messages){
+    console.log(messages)
 
     if(!messages) return;
 
@@ -78,12 +97,10 @@ socket.on('full products', function(products){
 
 
 //-------------FUNCTIONS-----------------//
-const emitNewMessage = ({ user, message }) => {
-    if(!user || !message) return
-    if(!validateEmail(user)) return
+const emitNewMessage = (message) => {
 
     console.log('from emitNewMessage')
-    socket.emit('chat message', {message, user});
+    socket.emit('chat message', message);
     input.value = '';
 }
 

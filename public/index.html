@@ -51,17 +51,37 @@
 
       <section class="container bg-white min-h-50 p-md-3 shadow mt-5">
         <h1 class="text-center text-blue">Centro de mensajes</h1>
-        <div>
-          <label for="user-id">User email:</label>
-          <input type="email" name="user" id="user-id" placeholder="Email necesario">
-        </div>
         <hr>
         <ul id="messages" class="messages-list"></ul>
         <hr>
-        <form id="form-message">
+        <form id="form-message" class="form-message" >
+          <div>
+            <label for="user-id">Email:</label>
+            <input type="email" name="user" id="user-id" placeholder="Email necesario">
+          </div>
+          <div>
+            <label for="name">Nombre:</label>
+            <input type="text" name="user-name" id="user-name" placeholder="Nombre">
+          </div>
+          <div>
+            <label for="user-lastName">Apellido:</label>
+            <input type="text" name="user-lastName" id="user-lastName" placeholder="Apellido">
+          </div>
+          <div>
+            <label for="user-age">Edad:</label>
+            <input type="number" min="1" name="user-age" id="user-age" placeholder="Edad">
+          </div>
+          <div>
+            <label for="user-alias">Alias</label>
+            <input type="text" name="user-alias" id="user-alias" placeholder="Alias">
+          </div>
+          <div>
+            <label for="user-avatar">Avatar</label>
+            <input type="text" name="user-avatar" id="user-avatar" placeholder="Url avatar">
+          </div>
           <div>
             <label for="input-message">Mensaje:</label>
-            <input class="flex" type="text" name="input-message" id="input-message" placeholder="Escribe tu mensaje" autocomplete="off">
+            <textarea id="input-message""></textarea>
           </div>
           <input type="submit" value="Enviar" class="btn btn-primary w-25 mt-3">
         </form>

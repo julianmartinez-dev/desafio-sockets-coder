@@ -17,5 +17,8 @@
     "mysql": "^2.18.1",
     "socket.io": "^4.5.1",
     "sqlite3": "^5.0.11"
+  },
+  "devDependencies": {
+    "normalizr": "^3.6.2"
   }
 }

@@ -1,51 +1,30 @@
 const fs = require('fs')
-const { options } = require('../options/sqliteDB');
-const knex = require('knex')(options);
+const normalize = require('../normalizr/index.js')
 
 class Chat {
   constructor(fileName = '') {
     this.fileName = fileName;
-    this.createTable(fileName);
   }
-  async createTable(tableName = 'messages') {
-   try {
-    const tableExists = await knex.schema.hasTable(tableName);
-     if (tableExists) {
-       console.log(`Table ${this.fileName} already exits`);
-       return;
-     }
-     await knex.schema.createTable(tableName, (table) => {
-       table.increments('id')
-       table.string('message');
-       table.string('user');
-       table.integer('date');
-     });
-     console.log(`Table ${this.fileName} created`);
-   } catch (error) {
-     console.log(error);
-   } 
-
-  }
-
-  async saveMessage(msg = {}) {
-    const { message, user, date } = msg;
+  async saveMessage(message = {}) {
+    const messages = await this.getMessages();
+    messages.push(message);
     try {
-      await knex('messages').insert({ message, user, date })
-      console.log('message saved');
+      fs.writeFileSync(this.fileName, JSON.stringify(messages), null, 3);
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   }
-
   async getMessages() {
     try {
-      const messages = await knex.from('messages').select('*');
-      console.log(messages)
-      return messages;
-    }catch(error) {
-      console.log(error);
+      const messages = fs.readFileSync(this.fileName, 'utf-8') || "[]";
+      const normalizedData = normalize(JSON.parse(messages));
+      console.log(normalizedData);
+      return normalizedData;
+    } catch (error) {
+      throw new Error(error);
     }
   }
+
 }
 
 module.exports = Chat;

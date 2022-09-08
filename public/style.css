@@ -22,3 +22,10 @@ ul {
     max-height: 250px;
     overflow-y: scroll;
 }
+
+.form-message > div{
+    max-width: 350px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}

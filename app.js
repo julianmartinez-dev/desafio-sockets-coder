@@ -5,13 +5,15 @@ const { Server } = require('socket.io')
 const Contenedor = require('./classes/Contenedor')
 const Chat = require('./classes/Chat')
 const apiRoutes = require('./api')
+const getFakeProducts = require('./api/index');
+const { generateProducts } = require('./utils/generateProducts');
 
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 const contenedor = new Contenedor('products');
-const chat = new Chat('messages');
+const chat = new Chat('messages.json');
 
 app.use(express.static('./public'));
 app.use(express.json());
@@ -26,16 +28,15 @@ app.get('/', (req, res) => {
 io.on('connection', async (socket) => {
     //When user connects, we send him the chat history and product list
     const messages = await chat.getMessages();
-    const products = await Contenedor.getProducts();
+    const products = await generateProducts(5);
     io.emit('full chat', messages )
     io.emit('full products', products )
 
     //When user sends a message, we save it in the chat history
-    socket.on('chat message',async ({ message, user}) => {
+    socket.on('chat message',async (message) => {
         const newMessage = {
-            message,
-            user,
-            date: Date.now(),
+            ...message,
+            date: new Date()
         }
         io.emit('chat message', newMessage);
         await chat.saveMessage(newMessage);
