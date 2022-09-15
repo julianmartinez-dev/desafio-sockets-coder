@@ -7,6 +7,7 @@ const Chat = require('./classes/Chat')
 const apiRoutes = require('./api')
 const getFakeProducts = require('./api/index');
 const { generateProducts } = require('./utils/generateProducts');
+const { generateID } = require('./utils/generateID');
 
 
 const app = express();
@@ -35,8 +36,8 @@ io.on('connection', async (socket) => {
     //When user sends a message, we save it in the chat history
     socket.on('chat message',async (message) => {
         const newMessage = {
+            id: generateID(),
             ...message,
-            date: new Date()
         }
         io.emit('chat message', newMessage);
         await chat.saveMessage(newMessage);

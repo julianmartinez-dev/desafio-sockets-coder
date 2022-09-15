@@ -1,14 +1,1 @@
-[
-  {
-    "author": {
-      "id": "julian.fmartinez@gmail.com",
-      "name": "julian",
-      "lastName": "marrntez",
-      "age": "12",
-      "alias": "asd",
-      "avatar": "32"
-    },
-    "text": "aaaa",
-    "date": "2022-09-06T03:56:27.061Z"
-  }
-]
+[{"id":"eockw0z","author":{"id":"julian.fmartinez@gmail.com","name":"Julian","lastName":"Martinez","age":"32","alias":"Julian","avatar":"Avatar"},"text":"Hola","date":"2022-09-15T01:27:02.132Z"},{"id":"jimls1a","author":{"id":"julian.fmartinez@gmail.com","name":"Julian","lastName":"Martinez","age":"32","alias":"Julian","avatar":"Avatar"},"text":"Que tal?","date":"2022-09-15T01:27:08.219Z"},{"id":"p5ank54","author":{"id":"julian.fmartinez@gmail.com","name":"Julian","lastName":"Martinez","age":"32","alias":"Julian","avatar":"Avatar"},"text":"Este es un mensaje de prueba","date":"2022-09-15T01:27:17.134Z"},{"id":"ln9y7t7","author":{"id":"julian.fmartinez@gmail.com","name":"Julian","lastName":"Martinez","age":"32","alias":"Julian","avatar":"Avatar"},"text":"Probando..","date":"2022-09-15T01:27:24.114Z"},{"id":"ft7ep1i","author":{"id":"julian.fmartinez@gmail.com","name":"Julian","lastName":"Martinez","age":"32","alias":"Julian","avatar":"avatar"},"text":"Sigo probando..","date":"2022-09-15T01:27:50.907Z"},{"id":"tkpld4y","author":{"id":"julian.fmartinez@gmail.com","name":"Julian","lastName":"Martinez","age":"32","alias":"Julian","avatar":"avatar"},"text":"...","date":"2022-09-15T01:27:57.974Z"},{"id":"w8042cc","author":{"id":"julian.fmartinez@gmail.com","name":"Julian","lastName":"Martinez","age":"32","alias":"Julian","avatar":"avatar"},"text":"...","date":"2022-09-15T01:28:01.541Z"}]

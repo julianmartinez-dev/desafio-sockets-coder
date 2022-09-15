@@ -1,4 +1,5 @@
-const fs = require('fs')
+const fs = require('fs');
+const { schema } = require('normalizr');
 const normalize = require('../normalizr/index.js')
 
 class Chat {
@@ -6,20 +7,32 @@ class Chat {
     this.fileName = fileName;
   }
   async saveMessage(message = {}) {
-    const messages = await this.getMessages();
+    //Get messages from .json file
+    const messages = JSON.parse(fs.readFileSync(this.fileName, 'utf-8') || '[]');
+    //Add a new one
     messages.push(message);
     try {
-      fs.writeFileSync(this.fileName, JSON.stringify(messages), null, 3);
+      //Save messages to .json file
+      fs.writeFileSync(this.fileName, JSON.stringify(messages), null, 2);
     } catch (error) {
       throw new Error(error);
     }
   }
   async getMessages() {
     try {
-      const messages = fs.readFileSync(this.fileName, 'utf-8') || "[]";
-      const normalizedData = normalize(JSON.parse(messages));
-      console.log(normalizedData);
-      return normalizedData;
+      //Get messages from .json file
+      const messages = JSON.parse(fs.readFileSync(this.fileName, 'utf-8') || "[]")
+
+      //Normalize messages
+      const authorSchema = new schema.Entity("author", {}, { idAttribute: "email" });
+      const messageSchema = new schema.Entity("messages",{
+        author: authorSchema
+      },{ idAttribute: "id" });
+      const normalizedMessages = normalize( messages, [messageSchema] );
+
+      //Return normalized messages
+      return normalizedMessages;
+
     } catch (error) {
       throw new Error(error);
     }
